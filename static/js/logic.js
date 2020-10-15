@@ -58,20 +58,13 @@ d3.json(baseURL, data => {
 });
 
   // Set up the legend
-  var legend = L.control({ position: "bottomleft" });
   legend.onAdd = function() {
-    var div = L.DomUtil.create("div", "info legend");
+    var div = L.DomUtil.create("div", "info legend"),
+    mags = [10,20,30],
+    labels = [];
 
-    // Add min & max
-    var legendInfo = "<h1>Median Income</h1>" +
-      "<div class=\"labels\">" +
-        "<div class=\"min\">test</div>" +
-        "<div class=\"max\">test</div>" +
-      "</div>";
 
-    div.innerHTML = legendInfo;
-
-    limits.forEach(function(limit, index) {
+    limits.forEach(function(mags, index) {
       labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
     });
 
@@ -80,29 +73,3 @@ d3.json(baseURL, data => {
   };
  // Adding legend to the map
  legend.addTo(myMap);
-//   // Grab the data with d3
-// d3.json(baseURL, function(response) {
-
-//     // Create a new marker cluster group
-//     var markers = L.markerClusterGroup();
-  
-//     // Loop through data
-//     for (var i = 0; i < response.length; i++) {
-  
-//       // Set the data location property to a variable
-//       var location = response[i].location;
-  
-//       // Check for location property
-//       if (location) {
-  
-//         // Add a new marker to the cluster group and bind a pop-up
-//         markers.addLayer(L.marker([location.coordinates[1], location.coordinates[0]])
-//           .bindPopup(response[i].descriptor));
-//       }
-  
-//     }
-  
-//     // Add our marker cluster layer to the map
-//     myMap.addLayer(markers);
-  
-//   })
